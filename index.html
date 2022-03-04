@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        #red {
+            background-color: red;
+
+        }
+
+        #blue {
+            background-color: blue;
+        }
+
+        #green {
+            background-color: green;
+        }
+
+        #yellow {
+            background-color: yellow;
+        }
+
+        #black {
+            background-color: black;
+        }
+
+        #parent {
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .sameEntry {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="parent">
+        <div id="red" class="sameEntry" onclick="changeColor()"></div>
+        <div id="blue" class="sameEntry" onclick="changeColor()"></div>
+        <div id="green" class="sameEntry" onclick="changeColor()"></div>
+        <div id="yellow" class="sameEntry" onclick="changeColor()"></div>
+        <div id="black" class="sameEntry" onclick="changeColor()"></div>
+    </div>
+
+    <script>
+
+
+        let setAll = document.querySelectorAll('.sameEntry')
+        function changeColor() {
+
+            let itemIndex = 0;
+            let current = 0;
+            // let idColor = event.target.style.backgroundColor
+            let idColor = document.getElementById(event.target.id)
+
+            let color = getComputedStyle(idColor).backgroundColor
+
+            let setAll = document.querySelectorAll('.sameEntry')
+
+            for (let item of setAll) {
+
+                if (item == idColor) {
+                    current = itemIndex
+                    console.log(itemIndex);
+                }
+                itemIndex++  
+            }
+
+            if (current == 0) {
+                setAll[current + 1].style.backgroundColor = color
+                setAll[current - 1].style.backgroundColor = color
+            } else if (current == setAll.length-1) {
+                setAll[current - 1].style.backgroundColor = color
+            } else {
+                setAll[current - 1].style.backgroundColor = color
+
+                setAll[current + 1].style.backgroundColor = color
+            }
+            // console.log(idColor);
+        }
+        
+    </script>
+</body>
+
+</html>
